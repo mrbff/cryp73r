@@ -1,42 +1,28 @@
-NAME1 := keygen
+NAME := cryp73r
 
-NAME2 := crypter
-
-NAME3 := decrypter
-
-CFLAGS := -lcryptopp
+CFLAGS := -lcryptopp -g
 
 CC := g++
 
-SRCS1 := keygen.cpp
-SRCS2 := crypter.cpp
-SRCS3 := decrypter.cpp
+SRCS := main.cpp f_iterator.cpp f_encryptor.cpp f_decryptor.cpp f_utils.cpp
 
-OBJS1 :=  $(SRCS1:.cpp=.o)
-OBJS2 :=  $(SRCS2:.cpp=.o)
-OBJS3 :=  $(SRCS3:.cpp=.o)
+OBJS :=  $(SRCS:.cpp=.o)
 
 .cpp.o:
 	${CC} -c $< -o ${<:.cpp=.o} $(CFLAGS)
 
 RM :=	rm -f
 
-all: $(NAME1) $(NAME2) $(NAME3)
+all: $(NAME)
 
-$(NAME1): $(OBJS1)
-	$(CC)  $(OBJS1) -o $(NAME1) $(CFLAGS)
-
-$(NAME2): $(OBJS2)
-	$(CC) $(OBJS2) -o $(NAME2) $(CFLAGS)
-
-$(NAME3): $(OBJS3)
-	$(CC) $(OBJS3) -o $(NAME3) $(CFLAGS)
+$(NAME): $(OBJS)
+	$(CC)  $(OBJS) -o $(NAME) $(CFLAGS)
 
 clean:
 	$(RM) *.o
 
 fclean: clean
-	$(RM) $(NAME1) $(NAME2) $(NAME3)
+	$(RM) $(NAME)
 
 re: fclean all
 
