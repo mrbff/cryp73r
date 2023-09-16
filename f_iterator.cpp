@@ -1,5 +1,17 @@
 #include "cryp73r.hpp"
 
+bool is_directory(const std::string& path) {
+    struct stat buf;
+    stat(path.c_str(), &buf);
+    return S_ISDIR(buf.st_mode);
+}
+
+bool is_file(const std::string& path) {
+    struct stat buf;
+    stat(path.c_str(), &buf);
+    return S_ISREG(buf.st_mode);
+}
+
 void f_iterator(std::string targetPath)
 {
     fun(targetPath);

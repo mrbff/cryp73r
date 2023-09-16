@@ -1,5 +1,7 @@
 #include "cryp73r.hpp"
 
+void (*fun) (std::string filepath);
+
 int main(int ac, char **av)
 {
     if (ac < 2)
@@ -23,9 +25,7 @@ int main(int ac, char **av)
 
     f_getKey(av[2]);
 
-//    std::string target = (ac < 4) ? f_getcwd() : av[3];
-//    std::cout << av[3] << std::endl;
-    f_iterator(/*(ac < 4) ? f_getcwd() : */av[3]);
+    f_iterator((ac < 4) ? f_getcwd() : av[3]);
 
     return 0;
 }

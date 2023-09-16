@@ -1,5 +1,8 @@
 #include "cryp73r.hpp"
 
+CryptoPP::SecByteBlock key_0(CryptoPP::AES::DEFAULT_KEYLENGTH);
+CryptoPP::byte iv_0[CryptoPP::AES::BLOCKSIZE];
+
 void f_usage()
 {
     std::cout << "./cryp73r [-k generate random encryption key] 'keyFileName.key' [optional]" << std::endl;
@@ -45,13 +48,12 @@ void f_getKey(std::string keyPath)
 std::string f_getcwd()
 {
     char cwd[PATH_MAX];
-    getcwd(cwd, sizeof(cwd));
-/*   if ( == NULL) {
+    
+   if (getcwd(cwd, sizeof(cwd)) == NULL) {
         std::cerr << "getcwd() error" << std::endl;
         exit(1);
-    }*/
-    std::cout << cwd << std::endl;
-//    std::string wd(cwd);
-//    free(cwd);
-    return cwd;
+    }
+
+    std::string wd(cwd);
+    return wd;
 }

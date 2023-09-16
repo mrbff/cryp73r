@@ -10,11 +10,11 @@
 #include <unistd.h>
 #include <limits.h>
 
-static inline void (*fun) (std::string filepath);
+extern void (*fun) (std::string filepath);
 
-static inline CryptoPP::SecByteBlock key_0(CryptoPP::AES::DEFAULT_KEYLENGTH);
+extern CryptoPP::SecByteBlock key_0;
 
-static inline CryptoPP::byte iv_0[CryptoPP::AES::BLOCKSIZE];
+extern CryptoPP::byte iv_0[CryptoPP::AES::BLOCKSIZE];
 
 void f_usage();
 

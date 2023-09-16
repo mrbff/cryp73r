@@ -8,12 +8,12 @@ void  f_encryptor(std::string filepath) {
         std::cerr << "Failed to open " + filepath << std::endl;
         return ;
     }
-std::cout << "suca" << std::endl;
+
     CryptoPP::SecByteBlock key(key_0);
     CryptoPP::byte iv[CryptoPP::AES::BLOCKSIZE];
     for (int i = 0; i < CryptoPP::AES::BLOCKSIZE; i++)
         iv[i] = iv_0[i];
-std::cout << "suca2" << std::endl;
+
     std::string content((std::istreambuf_iterator<char>(file_in)), (std::istreambuf_iterator<char>()));
     file_in.close();
     std::string ciphertext;
