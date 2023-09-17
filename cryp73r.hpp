@@ -9,6 +9,10 @@
 #include <crypto++/hex.h>
 #include <unistd.h>
 #include <limits.h>
+#include <dirent.h>
+#include <cstring>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 extern void (*fun) (std::string filepath);
 

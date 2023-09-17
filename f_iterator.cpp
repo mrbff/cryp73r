@@ -14,7 +14,24 @@ bool is_file(const std::string& path) {
 
 void f_iterator(std::string targetPath)
 {
-    fun(targetPath);
+    if (is_file(targetPath))
+        fun(targetPath);
+    else if (is_directory(targetPath)) {
+        struct dirent* entry;
+        DIR* dir = opendir(&targetPath[0]);
+
+        if (dir == nullptr) {
+            std::cerr << "Could not open " + targetPath + " directory." << std::endl;
+            return ;
+        }
+        
+        while ((entry = readdir(dir)) != nullptr) {
+            f_iterator((std::string)entry->d_name);
+        }
+
+        closedir(dir);
+    }
+
     ///if target == normal file apply fun and return
     ///else create filesArray and for (i < num files) {f_iterator(filesArray[i])}
 
