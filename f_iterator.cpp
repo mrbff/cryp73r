@@ -15,18 +15,25 @@ bool is_file(const std::string& path) {
 void f_iterator(std::string targetPath)
 {
     if (is_file(targetPath))
+        //std::cout << targetPath + " is a file" << std::endl;
         fun(targetPath);
     else if (is_directory(targetPath)) {
         struct dirent* entry;
-        DIR* dir = opendir(&targetPath[0]);
+        DIR* dir = opendir(targetPath.c_str());
 
         if (dir == nullptr) {
             std::cerr << "Could not open " + targetPath + " directory." << std::endl;
             return ;
         }
         
+    //    std::cout << targetPath + " directory open" << std::endl;
         while ((entry = readdir(dir)) != nullptr) {
-            f_iterator((std::string)entry->d_name);
+            std::string filename(entry->d_name);
+            if (filename != ".." && filename != ".")
+            {   
+                filename = targetPath + "/" + filename;
+                f_iterator(filename);
+            }
         }
 
         closedir(dir);

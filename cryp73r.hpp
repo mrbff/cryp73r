@@ -6,13 +6,16 @@
 #include <crypto++/aes.h>
 #include <crypto++/modes.h>
 #include <crypto++/osrng.h>
+#include <cryptopp/files.h>
 #include <crypto++/hex.h>
+#include <cryptopp/filters.h>
 #include <unistd.h>
 #include <limits.h>
 #include <dirent.h>
 #include <cstring>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <vector>
 
 extern void (*fun) (std::string filepath);
 
